@@ -1,0 +1,6 @@
+certifi
+chardet
+idna
+random-user-agent
+requests
+urllib3
