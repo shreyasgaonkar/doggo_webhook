@@ -1,8 +1,8 @@
 ## Doggo Webhook
 
-Looking at dog pictures improves [well-being](https://www.psychologytoday.com/ie/blog/your-online-secrets/202004/looking-pictures-dogs-improves-well-being)! Why not automate this with your IM app (did someone say [Discord](https://discord.com/)?)
+Looking at dog pictures improves [well-being](https://www.psychologytoday.com/ie/blog/your-online-secrets/202004/looking-pictures-dogs-improves-well-being)! Why not automate this with your IM app (did someone say [Discord](https://discord.com/)/[Slack](https://slack.com/)?
 
-[doggo.py](doggo.py) will fetch the top 25 reddit posts on ```/r/dogpictures``` and push a randomly picked iamge it to your text application as a webhook. You can run this on a cronjob to send dog pictures at regular intervals.
+[doggo.py](doggo.py) will fetch the top 25 reddit posts on ```/r/dogpictures``` and push a randomly picked image it to your text application as a webhook. You can run this on a cronjob to send dog pictures at regular intervals.
 
 ### Installation:
 ```Shell
@@ -29,20 +29,26 @@ python doggo.py
 ### Set webhook environment variable:
 ```Shell
 # Windows
-set webhook_url="<webhook-endpoint>"
+set webhook_url="<enter-webhook-url>"
 
 # MacOS
-export webhook_url="<webhook-endpoint>"
+export webhook_url="<enter-webhook-url>"
 ```
 
 or hard code the value:
 
 ```Python
 try:
-    WEBHOOK_URL = os.environ['webhook_url']
+    WEBHOOK_URL = os.environ["webhook_url"]
 except KeyError:
-    WEBHOOK_URL = '<enter-webhook-url>'
+    WEBHOOK_URL = "<enter-webhook-url>"
 ```
 
 ### See in action:
-![Doggo Webhook](img/doggo.JPG)
+![Discord](img/discord.JPG)
+
+*Discord Webhook*
+
+![Slack](img/slack.JPG)
+
+*Slack Webhook*

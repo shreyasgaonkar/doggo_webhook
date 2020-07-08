@@ -1,11 +1,13 @@
 import random
 import os
+import re
 import requests
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
 
 
 URL = 'https://www.reddit.com/r/dogpictures/top.json?sort=top&t=day&limit=25'
+AVATAR_URL = 'http://brunswickplantationliving.com/wp-content/uploads/2013/04/dogs.jpg'
 # Set webhook url from environment variable: webhook_url or hardcode it:
 try:
     WEBHOOK_URL = os.environ['webhook_url']
@@ -52,25 +54,44 @@ def call_webhook(proxy, iteration):
     content_url = data['data']['children'][random_post]['data']['url_overridden_by_dest']
     print(f"Snagged url: {content_url}")
 
-    # JSON as per: https://discord.com/developers/docs/resources/webhook#execute-webhook
-
-    data_post = {
-        "embeds": [
-            {
-                "image": {
-                    "url": content_url
-                }
-            }
-        ],
-        "avatar_url": "http://brunswickplantationliving.com/wp-content/uploads/2013/04/dogs.jpg",
-        "username": "Doggo_Bot"
-    }
+    data_post = parse_webhook(WEBHOOK_URL, content_url)
 
     response = requests.post(WEBHOOK_URL, json=data_post)
     print(response.status_code)
     global COMPLETE
     COMPLETE = True
     return True
+
+
+def parse_webhook(url, content_url):
+    """Parse webhook url for Slack/Discord"""
+    if re.search(r'slack', url.lower()) is None:
+        print("Found Discord webhook")
+
+        # Return JSON payload back to POST method as per IM endpoint
+        # JSON as per: https://discord.com/developers/docs/resources/webhook#execute-webhook
+        return {
+            "username": "Doggo_Bot",
+            "avatar_url": AVATAR_URL,
+            "embeds": [
+                {
+                    "image": {
+                        "url": content_url
+                    }
+                }
+            ],
+        }
+
+    # JSON as per: https://api.slack.com/messaging/webhooks
+    print("Found Slack webhook")
+    return {
+        "username": "Doggo_Bot",
+        "icon_url": AVATAR_URL,
+        "text": "Woof woof!",
+        "attachments": [{
+            "image_url": content_url
+        }]
+    }
 
 
 def main_function():
