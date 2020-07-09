@@ -1,4 +1,4 @@
-## Doggo Webhook
+## Doggo Webhook [![HitCount](http://hits.dwyl.com/shreyasgaonkar/doggo_webhook.svg)](http://hits.dwyl.com/shreyasgaonkar/doggo_webhook)
 
 Looking at dog pictures improves [well-being](https://www.psychologytoday.com/ie/blog/your-online-secrets/202004/looking-pictures-dogs-improves-well-being)! Why not automate this with your IM app (did someone say [Discord](https://discord.com/)/[Slack](https://slack.com/)?
 
