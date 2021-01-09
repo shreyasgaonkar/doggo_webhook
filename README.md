@@ -4,6 +4,8 @@ Looking at dog pictures improves [well-being](https://www.psychologytoday.com/ie
 
 [doggo.py](doggo.py) will fetch the top 25 reddit posts on ```/r/dogpictures``` and push a randomly picked image it to your text application as a webhook. You can run this on a cronjob to send dog pictures at regular intervals.
 
+*Note:* Looking for bot implimentation? Head to https://github.com/shreyasgaonkar/doggo_webhook/tree/master/discord_bot
+
 ### Installation:
 ```Shell
 # Clone
