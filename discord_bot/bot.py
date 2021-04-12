@@ -19,16 +19,17 @@ headers = {'user-agent': user_agent}
 
 @client.event
 async def on_ready():
+    """Called upon starting the discord client"""
     print(f"We have logged in as {client.user}")
 
 
 @client.event
 async def on_message(message):
+    """Listens for new messages on the channel"""
     if message.author == client.user:
         return
 
     if message.content.startswith('!woof'):
-        # await message.channel.send("Hello")
         res = requests.get(URL, headers=headers)
         data = res.json()
         random_post = random.randrange(0, 24)

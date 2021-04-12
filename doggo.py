@@ -8,6 +8,7 @@ from random_user_agent.params import SoftwareName, OperatingSystem
 
 URL = 'https://www.reddit.com/r/dogpictures/top.json?sort=top&t=day&limit=25'
 AVATAR_URL = 'http://brunswickplantationliving.com/wp-content/uploads/2013/04/dogs.jpg'
+
 # Set webhook url from environment variable: webhook_url or hardcode it:
 try:
     WEBHOOK_URL = os.environ['webhook_url']
@@ -103,9 +104,12 @@ def main_function():
     else:
         for i in PROXY:
             if COMPLETE:
-                print("Success: A Doggo is on it's way!")
+                print("Success: A Doggo is on its way!")
                 break
             call_webhook(proxy=True, iteration=i)
+        else:
+            # Optional: If no proxy IP works from the list, fallback to no proxy option
+            call_webhook(proxy=False, iteration=None)
 
 
 if __name__ == "__main__":
